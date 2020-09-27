@@ -1,5 +1,6 @@
-from test1 import TestPages
 import unittest
+
+from test_1 import TestPages
 
 
 def suite1():

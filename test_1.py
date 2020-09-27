@@ -1,13 +1,9 @@
-from selenium import webdriver
 import time
 import unittest
 
-USER_NAME = "//input[@name='username']"
-PASSWORD = "//input[@name='password']"
-SUBMIT = "//button[@type='submit']"
+from selenium import webdriver
 
-CONTENT = "//input[@name='wd']"
-SEARCH = "//input[@type='submit']"
+from test_2 import EtownPage, BaiduPage
 
 
 class Container:
@@ -21,6 +17,7 @@ instance = Container()
 class TestPages(unittest.TestCase):
     def setUp(self):
         driver = webdriver.Chrome()
+        driver.maximize_window()
         instance.driver = driver
 
     def tearDown(self):
@@ -31,18 +28,19 @@ class TestPages(unittest.TestCase):
         driver = instance.driver
         driver.get('https://qa.englishtown.cn/partner/englishcenters')
 
-        driver.find_element_by_xpath(USER_NAME).send_keys('stestc9445')
-        driver.find_element_by_xpath(PASSWORD).send_keys('1')
-        driver.find_element_by_xpath(SUBMIT).click()
+        driver.find_element_by_xpath(EtownPage.USER_NAME).send_keys('stestc9445')
+        driver.find_element_by_xpath(EtownPage.PASSWORD).send_keys('1')
+        driver.find_element_by_xpath(EtownPage.SUBMIT).click()
 
         time.sleep(5)
+        self.assertEqual(driver.find_element_by_xpath(EtownPage.STUDENT_NAME).text, 's14hz!')
 
     def test_baidu(self):
         driver = instance.driver
         driver.get('https://www.baidu.com/')
 
-        driver.find_element_by_xpath(CONTENT).send_keys('python')
-        driver.find_element_by_xpath(SEARCH).click()
+        driver.find_element_by_xpath(BaiduPage.CONTENT).send_keys('python')
+        driver.find_element_by_xpath(BaiduPage.SEARCH).click()
 
         time.sleep(5)
 

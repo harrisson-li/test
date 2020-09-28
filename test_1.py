@@ -28,7 +28,7 @@ class TestPages(unittest.TestCase):
         driver = instance.driver
         driver.get('https://qa.englishtown.cn/partner/englishcenters')
 
-        driver.find_element_by_xpath(EtownPage.USER_NAME).send_keys('stestc9445')
+        driver.find_element_by_xpath(EtownPage.USER_NAME).send_keys('stestc16569')
         driver.find_element_by_xpath(EtownPage.PASSWORD).send_keys('1')
         driver.find_element_by_xpath(EtownPage.SUBMIT).click()
 
@@ -44,6 +44,10 @@ class TestPages(unittest.TestCase):
 
         time.sleep(5)
 
+    def test_assert(self):
+        self.assertEqual(111, int('111'), '111 != int(\'111\')')
+        self.assertNotEqual(111, int('222'), '111 == int(\'222\')')
+
 
 # class TestBaidu(unittest.TestCase):
 #     driver = webdriver.Chrome()
@@ -56,5 +60,5 @@ class TestPages(unittest.TestCase):
 #     driver.close()
 
 
-# if __name__ == '__main__':
-#     unittest.main()
+if __name__ == '__main__':
+    unittest.main()
